@@ -64,9 +64,9 @@ Tree<T>::Tree(const std::vector<T>& inputNodes)
         throw std::runtime_error("Input vector cannot be empty");
 
     // Process the root node
-    if (inputNodes.size() > 0)
-        m_value = inputNodes[0];
+    m_value = inputNodes[0];
 
+    // insert the rest of nodes in a DFS manner
     for (int idx = 1; idx < inputNodes.size(); idx++)
        insert(this, inputNodes[idx]);
 }
