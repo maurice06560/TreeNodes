@@ -15,11 +15,11 @@ struct DeepestNodes {
     std::vector<T> m_deepestNode;
     int m_depth = -1;
 
-    void print();
+    void print() const;
 };
 
 template <typename T>
-void DeepestNodes<T>::print()
+void DeepestNodes<T>::print() const
 {
     std::cout << "deepest";
 
@@ -36,10 +36,10 @@ template <typename T>
 class Tree {
 
 public:
-    Tree(const std::vector<T> inputNodes);
+    Tree(const std::vector<T>& inputNodes);
     ~Tree();
 
-    DeepestNodes<T> getDeepestNodes();
+    DeepestNodes<T> getDeepestNodes() const;
 
 private:
     T m_value;
@@ -50,7 +50,7 @@ private:
     void emptyTree(Tree<T>* node);
     Tree<T>* insert(Tree<T>* node, const T& value);
 
-    void dfsDeepNodes(Tree<T>* node, int depth, DeepestNodes<T>& deepestNodes);
+    void dfsDeepNodes(const Tree<T>* node, const int depth, DeepestNodes<T>& deepestNodes) const;
 };
 
 // =============================
@@ -58,7 +58,7 @@ private:
 // in input
 // =============================
 template <class T>
-Tree<T>::Tree(const std::vector<T> inputNodes)
+Tree<T>::Tree(const std::vector<T>& inputNodes)
 {
     if (inputNodes.size() == 0)
         throw std::runtime_error("Input vector cannot be empty");
@@ -134,7 +134,7 @@ Tree<T>* Tree<T>::insert(Tree<T>* node, const T& value) {
 // object
 // =============================
 template <class T>
-DeepestNodes<T> Tree<T>::getDeepestNodes() 
+DeepestNodes<T> Tree<T>::getDeepestNodes() const
 {
     DeepestNodes<T> deepestNodes;
 
@@ -145,7 +145,7 @@ DeepestNodes<T> Tree<T>::getDeepestNodes()
 
 // =============================
 template <class T>
-void Tree<T>::dfsDeepNodes(Tree<T>* node, int depth, DeepestNodes<T>& deepestNodes)
+void Tree<T>::dfsDeepNodes(const Tree<T>* node, const int depth, DeepestNodes<T>& deepestNodes) const
 {
     if (!node->m_left && !node->m_right)
     {
