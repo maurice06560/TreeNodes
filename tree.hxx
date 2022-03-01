@@ -1,4 +1,4 @@
-#pragma TREE
+#pragma once 
 
 #include <vector>
 #include <iostream>
